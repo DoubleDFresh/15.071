@@ -221,7 +221,99 @@ tapply(USDA$VitaminC, USDA$HighCarbs, summary, na.rm = TRUE)
 ## HW - An Analytical Detective
 
 ```{r}
+mvt <- read.csv("mvtWeek1.csv")
 
+#How many rows?
+str(mvt)
+
+#Max of ID?
+max(mvt$ID)
+
+# Min of beat?
+min(mvt$Beat)
+
+# How many T arrest var?
+summary(mvt$Arrest)
+
+# How many have location == alley?
+sum(mvt$LocationDescription == "ALLEY")
+```
+
+### Dates in R
+
+
+```{r}
+# Look at the first date in Date....Month/Day/Year 24Hour:Minute
+mvt$Date[1]
+
+# Convert chars into a date object in R for Date col into DateConvert col
+DateConvert <- as.Date(strptime(mvt$Date, "%m/%d/%y %H:%M"))
+summary(DateConvert)
+
+# Now, let's create two new variables in our dataframe, Month and Weekday
+mvt$Month <- months(DateConvert)
+mvt$Weekday <- weekdays(DateConvert)
+mvt$Date <- DateConvert
+
+# In which month did the fewest motor vehicle thefts occur?
+table(mvt$Month)
+
+# Which weekday had the most?
+table(mvt$Weekday)
+
+# Which month has the largest number of mvt for which an arrest was made?
+summary(mvt$Arrest)
+table(mvt$Arrest, mvt$Month)
+```
+
+
+### Visualizing Crime Trends
+
+```{r}
+# Does crime increase or decrease from 2002 - 2012?
+hist(mvt$Date, breaks=100)
+
+# Create a boxplot of Date sorted by Arrest (YIKES!)
+?boxplot
+boxplot(mvt$Date ~ mvt$Arrest)
+
+# If you look at the boxplot, the one for Arrest=TRUE is definitely skewed towards the bottom of the plot
+
+# For what proportion of motor vehicle thefts in 2001 was an arrest made? Value btw 0 and 1
+# Arrest = T / all incidents in 2001
+table(mvt$Arrest, mvt$Year)
+2152/(2152+18517) #2001
+1212/(13068+1212) #2007
+550/(13542+550) #2012
+
+```
+
+
+```{r}
+# Popular locations
+
+## If Chi wants to increase # of arrests, where should they focus?
+## Create a table of LocationDescription using sort
+sort(table(mvt$LocationDescription), decreasing = TRUE)
+
+## Popular locations
+Top5 <- subset(mvt, LocationDescription == "STREET" | LocationDescription == "PARKING LOT/GARAGE(NON.RESID.)" | LocationDescription == "ALLEY" | LocationDescription == "GAS STATION" | LocationDescription == "DRIVEWAY - RESIDENTIAL")
+nrow(Top5)
+
+## Refresh
+
+Top5$LocationDescription <- factor(Top5$LocationDescription)
+str(Top5)
+
+# Which location has higher arrest rate than others?
+
+table(Top5$Arrest, Top5$LocationDescription)
+
+# Which day of the week do most mvt at gas stations happen?
+table(Top5$Weekday,Top5$LocationDescription == "GAS STATION")
+
+# Which day of the week do FEWEST mvt at DRIVEWAYs happen?
+table(Top5$Weekday,Top5$LocationDescription == "DRIVEWAY - RESIDENTIAL")
 ```
 
 
