@@ -71,6 +71,29 @@ ls()
 
 ```
 
+## Data Analysis - Summary Stats and Scatterplots
+
+```{r}
+mean(WHO$Under15)
+sd(WHO$Under15)
+summary(WHO$Under15)  #13.12% of pop is under 15 (min) - which one is it?  Japan!
+WHO$Country[which.min(WHO$Under15)]
+
+# Which country has max under 15? Niger with 49.99!
+WHO$Country[which.max(WHO$Under15)]
+
+# Create a scatterplot of GNI vs. fertility rate
+plot(WHO$GNI, WHO$FertilityRate)
+
+# look at countries with a GNI > 10,000 and Fertility Rate > 2.5
+outliers <- subset(WHO, GNI > 10000 & FertilityRate > 2.5)
+nrow(outliers)
+
+outliers[c("Country", "GNI", "FertilityRate")]
+
+
+```
+
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
