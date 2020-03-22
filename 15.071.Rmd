@@ -317,6 +317,96 @@ table(Top5$Weekday,Top5$LocationDescription == "DRIVEWAY - RESIDENTIAL")
 ```
 
 
+```{r}
+# Stock Dynamics
+IBM <- read.csv("IBMStock.csv")
+GE <- read.csv("GEStock.csv")
+ProcterGamble <- read.csv("ProcterGambleStock.csv")
+CocaCola <- read.csv("CocaColaStock.csv")
+Boeing <- read.csv("BoeingStock.csv")
+
+# Convert Date field into something R understands
+IBM$Date = as.Date(IBM$Date, "%m/%d/%y")
+GE$Date = as.Date(GE$Date, "%m/%d/%y")
+CocaCola$Date = as.Date(CocaCola$Date, "%m/%d/%y")
+ProcterGamble$Date = as.Date(ProcterGamble$Date, "%m/%d/%y")
+Boeing$Date = as.Date(Boeing$Date, "%m/%d/%y")
+
+# How many observations are there?
+nrow(IBM)
+
+# What is the earliest year?
+min(IBM$Date)
+min(Boeing$Date)
+
+# Latest year?
+max(IBM$Date)
+
+# Mean IBM price?
+mean(IBM$StockPrice)
+
+# Min GE price?
+min(GE$StockPrice)
+
+# Max Coke price?
+max(CocaCola$StockPrice)
+
+# Median Boeing?
+summary(Boeing)
+
+# SD of P&G?
+sd(ProcterGamble$StockPrice)
+
+```
+
+
+### Visualizing Stock Dynamics
+
+```{r}
+# Plot Coke - Date on x-axis, price on y-axis using a line
+plot(CocaCola$Date, CocaCola$StockPrice, type = "l", col = "red")
+
+# Now, add P&G to Coke
+lines(ProcterGamble$Date, ProcterGamble$StockPrice, col = "blue")
+abline(v=as.Date(c("1983-03-01")), lwd=1)
+
+
+# Changes from 95 to 2005. Use lines function to add other companies
+plot(CocaCola$Date[301:432], CocaCola$StockPrice[301:432], type="l", col="red", ylim=c(0,210))
+lines(ProcterGamble$Date, ProcterGamble$StockPrice, col = "blue")
+lines(IBM$Date, IBM$StockPrice, col = "black")
+lines(Boeing$Date, Boeing$StockPrice, col = "green")
+lines(GE$Date, GE$StockPrice, col = "orange")
+abline(v=as.Date(c("2004-01-01")), lwd=1)
+abline(v=as.Date(c("2005-11-30")), lwd=1)
+
+
+## Monthly trends
+## Calculate the mean price of IBM sorted by month using tapply
+
+## tapply Groups arg 1 by arg 2 and applies arg 3
+
+tapply(IBM$StockPrice, months(IBM$Date), mean, na.rm = TRUE)
+mean(IBM$StockPrice)
+
+
+## Repeat above for Coke
+tapply(CocaCola$StockPrice, months(CocaCola$Date), mean, na.rm = TRUE)
+mean(CocaCola$StockPrice)
+
+tapply(GE$StockPrice, months(GE$Date), mean, na.rm = TRUE)
+60.02973
+```
+
+```{r}
+## Demographics and Employment in the United States
+## How many interviewees are in the dataset?
+
+CPS <- read.csv("CPSData.csv")
+nrow(CPS)
+```
+
+
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
