@@ -5,6 +5,51 @@ output: html_notebook
 
 # Unit 1: Intro to Analytics 
 
+## Getting Started in R
+
+```{r}
+# Get help on functions
+?sqrt
+
+# Get a list of vars in env
+ls()
+```
+
+
+## Vectors and DataFrames
+
+```{r}
+# Create a vector using c function
+country <- c("Brazil", "China", "India", "Switzerland", "USA")
+LifeExpectancy <- c(74, 76, 65, 83, 79)
+
+# To display an element of a vec, use [ ]
+country[3]
+
+# To create a sequence, use seq
+seq(0,100,2)
+
+# Combine vecs into a df structure
+CountryData <- data.frame(country, LifeExpectancy)
+CountryData
+
+# Now, add a var to this df. Use a $ to link the data
+CountryData$Population <- c(199000,1390000, 1240000,7997,318000)
+
+CountryData
+
+# Now, add 2 new countries: Aus and Grc. 
+country <- c("Australia", "Greece")
+LifeExpectancy <- c(82,81)
+Population <- c(23050,11125)
+
+NewCountryData <- data.frame(country, LifeExpectancy, Population)
+NewCountryData
+
+# Now, combine CountryData and NewCountryData
+AllCountryData <- rbind(CountryData, NewCountryData)
+AllCountryData
+```
 
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
