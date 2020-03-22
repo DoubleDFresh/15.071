@@ -51,6 +51,26 @@ AllCountryData <- rbind(CountryData, NewCountryData)
 AllCountryData
 ```
 
+## Loading Data Files
+
+```{r}
+getwd()
+WHO <- read.csv("WHO.csv")
+str(WHO)
+
+summary(WHO)
+
+# Subsetting data to include only countries in EU
+?subset
+WHO_Europe <- subset(WHO,Region = "Europe")
+WHO_Europe
+
+# Now, remove WHO_Europe from environment
+rm(WHO_Europe)
+ls()
+
+```
+
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 

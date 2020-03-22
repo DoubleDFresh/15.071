@@ -1755,13 +1755,13 @@ summary {
 <h2>Getting Started in R</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHMoKVxuXG5gYGAifQ== -->
-<pre class="r"><code>ls()
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgaGVscCBvbiBmdW5jdGlvbnNcbj9zcXJ0XG5cbiMgR2V0IGEgbGlzdCBvZiB2YXJzIGluIGVudlxubHMoKVxuYGBgIn0= -->
+<pre class="r"><code># Get help on functions
+?sqrt
+
+# Get a list of vars in env
+ls()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiY2hhcmFjdGVyKDApXG4ifQ== -->
-<pre><code>character(0)</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1769,13 +1769,94 @@ summary {
 <h2>Vectors and DataFrames</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MywibnJvdyI6N30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVN6VTdDUUJBZUtDMVNJeUhoT1dnQ2hzU0xTU3Nhby9GQUFCT3VhN3RJNDdwdHRsdEJUc1luOHV4Rkw3NkNMK0U3b1B0THBJZDJacjc1KzJabUorZnpZMy91QTRBRGppZitybERCRzQzN2crRUFvRkVYVmcwYTBKSnlMZnhkRlFyT2taQk41UVNvYTB5RUFjaDhUL3Yya2oyQ256QXBoTlpSWG9PZU1iUkppYkhjMFRLbHlCcFhORW10Y1RoZHBYeURHVUUwTVpCek80Mk0yb3JLZ2pORWR1SGVKY000eGhVS2JreFFZUm5zZUMxUXpETW10SzM0MnBKYk9IbVJTNEJ3Q2xxT1F5MW5ud1kzY21iaVp0cHY4Nk9EYXhVUURZZHZTZzUrbEIxK25LcWdxTHZVOXZlcktoQit2ZXRDRmJvVVBXSkwxekZnTTg1S3l0bXpNZHMzNlFKZnJITWNjMFJqaS9yakxDOEo0bWxHS3pWYkxGc0Z0cTQ4WWQxME51ZHlmaXZyOFJQRVViQmdJa1d2YUs5Y004dGxFMUdzM2pXMy81OWNZeFdnVTFMWlBPbkZ5NUkrOVBvbnNvTjVSR0FZMVRTYm5lN29uZzNMekxXSHcvUStwZGd1aTZBN2JOOVJXMHlwaGd4eWxsSnVSeEZvRWZDTUl4dm54eG14aUw3LzlnK3F1KzBaRUFNQUFBPT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["LifeExpectancy"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Population"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Brazil","2":"74","3":"199000"},{"1":"China","2":"76","3":"1390000"},{"1":"India","2":"65","3":"1240000"},{"1":"Switzerland","2":"83","3":"7997"},{"1":"USA","2":"79","3":"318000"},{"1":"Australia","2":"82","3":"23050"},{"1":"Greece","2":"81","3":"11125"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[7]},"pages":{}}}
-  </script>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3IgdXNpbmcgYyBmdW5jdGlvblxuY291bnRyeSA8LSBjKFwiQnJhemlsXCIsIFwiQ2hpbmFcIiwgXCJJbmRpYVwiLCBcIlN3aXR6ZXJsYW5kXCIsIFwiVVNBXCIpXG5MaWZlRXhwZWN0YW5jeSA8LSBjKDc0LCA3NiwgNjUsIDgzLCA3OSlcblxuIyBUbyBkaXNwbGF5IGFuIGVsZW1lbnQgb2YgYSB2ZWMsIHVzZSBbIF1cbmNvdW50cnlbM11cblxuIyBUbyBjcmVhdGUgYSBzZXF1ZW5jZSwgdXNlIHNlcVxuc2VxKDAsMTAwLDIpXG5cbiMgQ29tYmluZSB2ZWNzIGludG8gYSBkZiBzdHJ1Y3R1cmVcbkNvdW50cnlEYXRhIDwtIGRhdGEuZnJhbWUoY291bnRyeSwgTGlmZUV4cGVjdGFuY3kpXG5Db3VudHJ5RGF0YVxuXG4jIE5vdywgYWRkIGEgdmFyIHRvIHRoaXMgZGYuIFVzZSBhICQgdG8gbGluayB0aGUgZGF0YVxuQ291bnRyeURhdGEkUG9wdWxhdGlvbiA8LSBjKDE5OTAwMCwxMzkwMDAwLCAxMjQwMDAwLDc5OTcsMzE4MDAwKVxuXG5Db3VudHJ5RGF0YVxuXG4jIE5vdywgYWRkIDIgbmV3IGNvdW50cmllczogQXVzIGFuZCBHcmMuIFxuY291bnRyeSA8LSBjKFwiQXVzdHJhbGlhXCIsIFwiR3JlZWNlXCIpXG5MaWZlRXhwZWN0YW5jeSA8LSBjKDgyLDgxKVxuUG9wdWxhdGlvbiA8LSBjKDIzMDUwLDExMTI1KVxuXG5OZXdDb3VudHJ5RGF0YSA8LSBkYXRhLmZyYW1lKGNvdW50cnksIExpZmVFeHBlY3RhbmN5LCBQb3B1bGF0aW9uKVxuTmV3Q291bnRyeURhdGFcblxuIyBOb3csIGNvbWJpbmUgQ291bnRyeURhdGEgYW5kIE5ld0NvdW50cnlEYXRhXG5BbGxDb3VudHJ5RGF0YSA8LSByYmluZChDb3VudHJ5RGF0YSwgTmV3Q291bnRyeURhdGEpXG5BbGxDb3VudHJ5RGF0YVxuYGBgIn0= -->
+<pre class="r"><code># Create a vector using c function
+country &lt;- c(&quot;Brazil&quot;, &quot;China&quot;, &quot;India&quot;, &quot;Switzerland&quot;, &quot;USA&quot;)
+LifeExpectancy &lt;- c(74, 76, 65, 83, 79)
+
+# To display an element of a vec, use [ ]
+country[3]
+
+# To create a sequence, use seq
+seq(0,100,2)
+
+# Combine vecs into a df structure
+CountryData &lt;- data.frame(country, LifeExpectancy)
+CountryData
+
+# Now, add a var to this df. Use a $ to link the data
+CountryData$Population &lt;- c(199000,1390000, 1240000,7997,318000)
+
+CountryData
+
+# Now, add 2 new countries: Aus and Grc. 
+country &lt;- c(&quot;Australia&quot;, &quot;Greece&quot;)
+LifeExpectancy &lt;- c(82,81)
+Population &lt;- c(23050,11125)
+
+NewCountryData &lt;- data.frame(country, LifeExpectancy, Population)
+NewCountryData
+
+# Now, combine CountryData and NewCountryData
+AllCountryData &lt;- rbind(CountryData, NewCountryData)
+AllCountryData</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
-<!-- rnb-frame-end -->
+<div id="loading-data-files" class="section level2">
+<h2>Loading Data Files</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RyKFdITylcblxuYGBgIn0= -->
+<pre class="r"><code>str(WHO)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiJ2RhdGEuZnJhbWUnOlx0MTk0IG9icy4gb2YgIDEzIHZhcmlhYmxlczpcbiAkIENvdW50cnkgICAgICAgICAgICAgICAgICAgICAgOiBGYWN0b3Igdy8gMTk0IGxldmVscyBcIkFmZ2hhbmlzdGFuXCIsLi46IDEgMiAzIDQgNSA2IDcgOCA5IDEwIC4uLlxuICQgUmVnaW9uICAgICAgICAgICAgICAgICAgICAgICA6IEZhY3RvciB3LyA2IGxldmVscyBcIkFmcmljYVwiLFwiQW1lcmljYXNcIiwuLjogMyA0IDEgNCAxIDIgMiA0IDYgNCAuLi5cbiAkIFBvcHVsYXRpb24gICAgICAgICAgICAgICAgICAgOiBpbnQgIDI5ODI1IDMxNjIgMzg0ODIgNzggMjA4MjEgODkgNDEwODcgMjk2OSAyMzA1MCA4NDY0IC4uLlxuICQgVW5kZXIxNSAgICAgICAgICAgICAgICAgICAgICA6IG51bSAgNDcuNCAyMS4zIDI3LjQgMTUuMiA0Ny42IC4uLlxuICQgT3ZlcjYwICAgICAgICAgICAgICAgICAgICAgICA6IG51bSAgMy44MiAxNC45MyA3LjE3IDIyLjg2IDMuODQgLi4uXG4gJCBGZXJ0aWxpdHlSYXRlICAgICAgICAgICAgICAgIDogbnVtICA1LjQgMS43NSAyLjgzIE5BIDYuMSAyLjEyIDIuMiAxLjc0IDEuODkgMS40NCAuLi5cbiAkIExpZmVFeHBlY3RhbmN5ICAgICAgICAgICAgICAgOiBpbnQgIDYwIDc0IDczIDgyIDUxIDc1IDc2IDcxIDgyIDgxIC4uLlxuICQgQ2hpbGRNb3J0YWxpdHkgICAgICAgICAgICAgICA6IG51bSAgOTguNSAxNi43IDIwIDMuMiAxNjMuNSAuLi5cbiAkIENlbGx1bGFyU3Vic2NyaWJlcnMgICAgICAgICAgOiBudW0gIDU0LjMgOTYuNCA5OSA3NS41IDQ4LjQgLi4uXG4gJCBMaXRlcmFjeVJhdGUgICAgICAgICAgICAgICAgIDogbnVtICBOQSBOQSBOQSBOQSA3MC4xIDk5IDk3LjggOTkuNiBOQSBOQSAuLi5cbiAkIEdOSSAgICAgICAgICAgICAgICAgICAgICAgICAgOiBudW0gIDExNDAgODgyMCA4MzEwIE5BIDUyMzAgLi4uXG4gJCBQcmltYXJ5U2Nob29sRW5yb2xsbWVudE1hbGUgIDogbnVtICBOQSBOQSA5OC4yIDc4LjQgOTMuMSA5MS4xIE5BIE5BIDk2LjkgTkEgLi4uXG4gJCBQcmltYXJ5U2Nob29sRW5yb2xsbWVudEZlbWFsZTogbnVtICBOQSBOQSA5Ni40IDc5LjQgNzguMiA4NC41IE5BIE5BIDk3LjUgTkEgLi4uXG4ifQ== -->
+<pre><code>&#39;data.frame&#39;:   194 obs. of  13 variables:
+ $ Country                      : Factor w/ 194 levels &quot;Afghanistan&quot;,..: 1 2 3 4 5 6 7 8 9 10 ...
+ $ Region                       : Factor w/ 6 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 4 1 4 1 2 2 4 6 4 ...
+ $ Population                   : int  29825 3162 38482 78 20821 89 41087 2969 23050 8464 ...
+ $ Under15                      : num  47.4 21.3 27.4 15.2 47.6 ...
+ $ Over60                       : num  3.82 14.93 7.17 22.86 3.84 ...
+ $ FertilityRate                : num  5.4 1.75 2.83 NA 6.1 2.12 2.2 1.74 1.89 1.44 ...
+ $ LifeExpectancy               : int  60 74 73 82 51 75 76 71 82 81 ...
+ $ ChildMortality               : num  98.5 16.7 20 3.2 163.5 ...
+ $ CellularSubscribers          : num  54.3 96.4 99 75.5 48.4 ...
+ $ LiteracyRate                 : num  NA NA NA NA 70.1 99 97.8 99.6 NA NA ...
+ $ GNI                          : num  1140 8820 8310 NA 5230 ...
+ $ PrimarySchoolEnrollmentMale  : num  NA NA 98.2 78.4 93.1 91.1 NA NA 96.9 NA ...
+ $ PrimarySchoolEnrollmentFemale: num  NA NA 96.4 79.4 78.2 84.5 NA NA 97.5 NA ...</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShXSE8pXG5gYGAifQ== -->
+<pre class="r"><code>summary(WHO)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgIENvdW50cnkgICAgICAgICAgICAgICAgICAgICAgUmVnaW9uICAgICBQb3B1bGF0aW9uICAgICAgICAgVW5kZXIxNSAgICAgICAgICBPdmVyNjAgICAgIFxuIEFmZ2hhbmlzdGFuICAgICAgICA6ICAxICAgQWZyaWNhICAgICAgICAgICAgICAgOjQ2ICAgTWluLiAgIDogICAgICAxICAgTWluLiAgIDoxMy4xMiAgIE1pbi4gICA6IDAuODEgIFxuIEFsYmFuaWEgICAgICAgICAgICA6ICAxICAgQW1lcmljYXMgICAgICAgICAgICAgOjM1ICAgMXN0IFF1LjogICAxNjk2ICAgMXN0IFF1LjoxOC43MiAgIDFzdCBRdS46IDUuMjAgIFxuIEFsZ2VyaWEgICAgICAgICAgICA6ICAxICAgRWFzdGVybiBNZWRpdGVycmFuZWFuOjIyICAgTWVkaWFuIDogICA3NzkwICAgTWVkaWFuIDoyOC42NSAgIE1lZGlhbiA6IDguNTMgIFxuIEFuZG9ycmEgICAgICAgICAgICA6ICAxICAgRXVyb3BlICAgICAgICAgICAgICAgOjUzICAgTWVhbiAgIDogIDM2MzYwICAgTWVhbiAgIDoyOC43MyAgIE1lYW4gICA6MTEuMTYgIFxuIEFuZ29sYSAgICAgICAgICAgICA6ICAxICAgU291dGgtRWFzdCBBc2lhICAgICAgOjExICAgM3JkIFF1LjogIDI0NTM1ICAgM3JkIFF1LjozNy43NSAgIDNyZCBRdS46MTYuNjkgIFxuIEFudGlndWEgYW5kIEJhcmJ1ZGE6ICAxICAgV2VzdGVybiBQYWNpZmljICAgICAgOjI3ICAgTWF4LiAgIDoxMzkwMDAwICAgTWF4LiAgIDo0OS45OSAgIE1heC4gICA6MzEuOTIgIFxuIChPdGhlcikgICAgICAgICAgICA6MTg4ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIEZlcnRpbGl0eVJhdGUgICBMaWZlRXhwZWN0YW5jeSAgQ2hpbGRNb3J0YWxpdHkgICAgQ2VsbHVsYXJTdWJzY3JpYmVycyAgTGl0ZXJhY3lSYXRlICAgICAgICBHTkkgICAgICAgXG4gTWluLiAgIDoxLjI2MCAgIE1pbi4gICA6NDcuMDAgICBNaW4uICAgOiAgMi4yMDAgICBNaW4uICAgOiAgMi41NyAgICAgIE1pbi4gICA6MzEuMTAgICBNaW4uICAgOiAgMzQwICBcbiAxc3QgUXUuOjEuODM1ICAgMXN0IFF1Ljo2NC4wMCAgIDFzdCBRdS46ICA4LjQyNSAgIDFzdCBRdS46IDYzLjU3ICAgICAgMXN0IFF1Ljo3MS42MCAgIDFzdCBRdS46IDIzMzUgIFxuIE1lZGlhbiA6Mi40MDAgICBNZWRpYW4gOjcyLjUwICAgTWVkaWFuIDogMTguNjAwICAgTWVkaWFuIDogOTcuNzUgICAgICBNZWRpYW4gOjkxLjgwICAgTWVkaWFuIDogNzg3MCAgXG4gTWVhbiAgIDoyLjk0MSAgIE1lYW4gICA6NzAuMDEgICBNZWFuICAgOiAzNi4xNDkgICBNZWFuICAgOiA5My42NCAgICAgIE1lYW4gICA6ODMuNzEgICBNZWFuICAgOjEzMzIxICBcbiAzcmQgUXUuOjMuOTA1ICAgM3JkIFF1Ljo3Ni4wMCAgIDNyZCBRdS46IDU1Ljk3NSAgIDNyZCBRdS46MTIwLjgxICAgICAgM3JkIFF1Ljo5Ny44NSAgIDNyZCBRdS46MTc1NTggIFxuIE1heC4gICA6Ny41ODAgICBNYXguICAgOjgzLjAwICAgTWF4LiAgIDoxODEuNjAwICAgTWF4LiAgIDoxOTYuNDEgICAgICBNYXguICAgOjk5LjgwICAgTWF4LiAgIDo4NjQ0MCAgXG4gTkEncyAgIDoxMSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBOQSdzICAgOjEwICAgICAgICAgIE5BJ3MgICA6OTEgICAgICBOQSdzICAgOjMyICAgICBcbiBQcmltYXJ5U2Nob29sRW5yb2xsbWVudE1hbGUgUHJpbWFyeVNjaG9vbEVucm9sbG1lbnRGZW1hbGVcbiBNaW4uICAgOiAzNy4yMCAgICAgICAgICAgICAgTWluLiAgIDogMzIuNTAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOiA4Ny43MCAgICAgICAgICAgICAgMXN0IFF1LjogODcuMzAgICAgICAgICAgICAgICBcbiBNZWRpYW4gOiA5NC43MCAgICAgICAgICAgICAgTWVkaWFuIDogOTUuMTAgICAgICAgICAgICAgICBcbiBNZWFuICAgOiA5MC44NSAgICAgICAgICAgICAgTWVhbiAgIDogODkuNjMgICAgICAgICAgICAgICBcbiAzcmQgUXUuOiA5OC4xMCAgICAgICAgICAgICAgM3JkIFF1LjogOTcuOTAgICAgICAgICAgICAgICBcbiBNYXguICAgOjEwMC4wMCAgICAgICAgICAgICAgTWF4LiAgIDoxMDAuMDAgICAgICAgICAgICAgICBcbiBOQSdzICAgOjkzICAgICAgICAgICAgICAgICAgTkEncyAgIDo5MyAgICAgICAgICAgICAgICAgICBcbiJ9 -->
+<pre><code>                Country                      Region     Population         Under15          Over60     
+ Afghanistan        :  1   Africa               :46   Min.   :      1   Min.   :13.12   Min.   : 0.81  
+ Albania            :  1   Americas             :35   1st Qu.:   1696   1st Qu.:18.72   1st Qu.: 5.20  
+ Algeria            :  1   Eastern Mediterranean:22   Median :   7790   Median :28.65   Median : 8.53  
+ Andorra            :  1   Europe               :53   Mean   :  36360   Mean   :28.73   Mean   :11.16  
+ Angola             :  1   South-East Asia      :11   3rd Qu.:  24535   3rd Qu.:37.75   3rd Qu.:16.69  
+ Antigua and Barbuda:  1   Western Pacific      :27   Max.   :1390000   Max.   :49.99   Max.   :31.92  
+ (Other)            :188                                                                               
+ FertilityRate   LifeExpectancy  ChildMortality    CellularSubscribers  LiteracyRate        GNI       
+ Min.   :1.260   Min.   :47.00   Min.   :  2.200   Min.   :  2.57      Min.   :31.10   Min.   :  340  
+ 1st Qu.:1.835   1st Qu.:64.00   1st Qu.:  8.425   1st Qu.: 63.57      1st Qu.:71.60   1st Qu.: 2335  
+ Median :2.400   Median :72.50   Median : 18.600   Median : 97.75      Median :91.80   Median : 7870  
+ Mean   :2.941   Mean   :70.01   Mean   : 36.149   Mean   : 93.64      Mean   :83.71   Mean   :13321  
+ 3rd Qu.:3.905   3rd Qu.:76.00   3rd Qu.: 55.975   3rd Qu.:120.81      3rd Qu.:97.85   3rd Qu.:17558  
+ Max.   :7.580   Max.   :83.00   Max.   :181.600   Max.   :196.41      Max.   :99.80   Max.   :86440  
+ NA&#39;s   :11                                        NA&#39;s   :10          NA&#39;s   :91      NA&#39;s   :32     
+ PrimarySchoolEnrollmentMale PrimarySchoolEnrollmentFemale
+ Min.   : 37.20              Min.   : 32.50               
+ 1st Qu.: 87.70              1st Qu.: 87.30               
+ Median : 94.70              Median : 95.10               
+ Mean   : 90.85              Mean   : 89.63               
+ 3rd Qu.: 98.10              3rd Qu.: 97.90               
+ Max.   :100.00              Max.   :100.00               
+ NA&#39;s   :93                  NA&#39;s   :93                   </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
@@ -1785,9 +1866,6 @@ summary {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
 <pre class="r"><code>plot(cars)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-plot-begin eyJjb25kaXRpb25zIjpbXSwiaGVpZ2h0IjoyODguNjI3OSwic2l6ZV9iZWhhdmlvciI6MCwid2lkdGgiOjQ2N30= -->
-<p><img src="data:image/png;base64,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" /></p>
-<!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
@@ -1797,7 +1875,7 @@ summary {
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIFVuaXQgMTogSW50cm8gdG8gQW5hbHl0aWNzIA0KDQojIyBHZXR0aW5nIFN0YXJ0ZWQgaW4gUg0KDQpgYGB7cn0NCiMgR2V0IGhlbHAgb24gZnVuY3Rpb25zDQo/c3FydA0KDQojIEdldCBhIGxpc3Qgb2YgdmFycyBpbiBlbnYNCmxzKCkNCmBgYA0KDQoNCiMjIFZlY3RvcnMgYW5kIERhdGFGcmFtZXMNCg0KYGBge3J9DQojIENyZWF0ZSBhIHZlY3RvciB1c2luZyBjIGZ1bmN0aW9uDQpjb3VudHJ5IDwtIGMoIkJyYXppbCIsICJDaGluYSIsICJJbmRpYSIsICJTd2l0emVybGFuZCIsICJVU0EiKQ0KTGlmZUV4cGVjdGFuY3kgPC0gYyg3NCwgNzYsIDY1LCA4MywgNzkpDQoNCiMgVG8gZGlzcGxheSBhbiBlbGVtZW50IG9mIGEgdmVjLCB1c2UgWyBdDQpjb3VudHJ5WzNdDQoNCiMgVG8gY3JlYXRlIGEgc2VxdWVuY2UsIHVzZSBzZXENCnNlcSgwLDEwMCwyKQ0KDQojIENvbWJpbmUgdmVjcyBpbnRvIGEgZGYgc3RydWN0dXJlDQpDb3VudHJ5RGF0YSA8LSBkYXRhLmZyYW1lKGNvdW50cnksIExpZmVFeHBlY3RhbmN5KQ0KQ291bnRyeURhdGENCg0KIyBOb3csIGFkZCBhIHZhciB0byB0aGlzIGRmLiBVc2UgYSAkIHRvIGxpbmsgdGhlIGRhdGENCkNvdW50cnlEYXRhJFBvcHVsYXRpb24gPC0gYygxOTkwMDAsMTM5MDAwMCwgMTI0MDAwMCw3OTk3LDMxODAwMCkNCg0KQ291bnRyeURhdGENCg0KIyBOb3csIGFkZCAyIG5ldyBjb3VudHJpZXM6IEF1cyBhbmQgR3JjLiANCmNvdW50cnkgPC0gYygiQXVzdHJhbGlhIiwgIkdyZWVjZSIpDQpMaWZlRXhwZWN0YW5jeSA8LSBjKDgyLDgxKQ0KUG9wdWxhdGlvbiA8LSBjKDIzMDUwLDExMTI1KQ0KDQpOZXdDb3VudHJ5RGF0YSA8LSBkYXRhLmZyYW1lKGNvdW50cnksIExpZmVFeHBlY3RhbmN5LCBQb3B1bGF0aW9uKQ0KTmV3Q291bnRyeURhdGENCg0KIyBOb3csIGNvbWJpbmUgQ291bnRyeURhdGEgYW5kIE5ld0NvdW50cnlEYXRhDQpBbGxDb3VudHJ5RGF0YSA8LSByYmluZChDb3VudHJ5RGF0YSwgTmV3Q291bnRyeURhdGEpDQpBbGxDb3VudHJ5RGF0YQ0KYGBgDQoNCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gDQoNClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsK1NoaWZ0K0VudGVyKi4gDQoNCmBgYHtyfQ0KcGxvdChjYXJzKQ0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQojIFVuaXQgMTogSW50cm8gdG8gQW5hbHl0aWNzIA0KDQojIyBHZXR0aW5nIFN0YXJ0ZWQgaW4gUg0KDQpgYGB7cn0NCiMgR2V0IGhlbHAgb24gZnVuY3Rpb25zDQo/c3FydA0KDQojIEdldCBhIGxpc3Qgb2YgdmFycyBpbiBlbnYNCmxzKCkNCmBgYA0KDQoNCiMjIFZlY3RvcnMgYW5kIERhdGFGcmFtZXMNCg0KYGBge3J9DQojIENyZWF0ZSBhIHZlY3RvciB1c2luZyBjIGZ1bmN0aW9uDQpjb3VudHJ5IDwtIGMoIkJyYXppbCIsICJDaGluYSIsICJJbmRpYSIsICJTd2l0emVybGFuZCIsICJVU0EiKQ0KTGlmZUV4cGVjdGFuY3kgPC0gYyg3NCwgNzYsIDY1LCA4MywgNzkpDQoNCiMgVG8gZGlzcGxheSBhbiBlbGVtZW50IG9mIGEgdmVjLCB1c2UgWyBdDQpjb3VudHJ5WzNdDQoNCiMgVG8gY3JlYXRlIGEgc2VxdWVuY2UsIHVzZSBzZXENCnNlcSgwLDEwMCwyKQ0KDQojIENvbWJpbmUgdmVjcyBpbnRvIGEgZGYgc3RydWN0dXJlDQpDb3VudHJ5RGF0YSA8LSBkYXRhLmZyYW1lKGNvdW50cnksIExpZmVFeHBlY3RhbmN5KQ0KQ291bnRyeURhdGENCg0KIyBOb3csIGFkZCBhIHZhciB0byB0aGlzIGRmLiBVc2UgYSAkIHRvIGxpbmsgdGhlIGRhdGENCkNvdW50cnlEYXRhJFBvcHVsYXRpb24gPC0gYygxOTkwMDAsMTM5MDAwMCwgMTI0MDAwMCw3OTk3LDMxODAwMCkNCg0KQ291bnRyeURhdGENCg0KIyBOb3csIGFkZCAyIG5ldyBjb3VudHJpZXM6IEF1cyBhbmQgR3JjLiANCmNvdW50cnkgPC0gYygiQXVzdHJhbGlhIiwgIkdyZWVjZSIpDQpMaWZlRXhwZWN0YW5jeSA8LSBjKDgyLDgxKQ0KUG9wdWxhdGlvbiA8LSBjKDIzMDUwLDExMTI1KQ0KDQpOZXdDb3VudHJ5RGF0YSA8LSBkYXRhLmZyYW1lKGNvdW50cnksIExpZmVFeHBlY3RhbmN5LCBQb3B1bGF0aW9uKQ0KTmV3Q291bnRyeURhdGENCg0KIyBOb3csIGNvbWJpbmUgQ291bnRyeURhdGEgYW5kIE5ld0NvdW50cnlEYXRhDQpBbGxDb3VudHJ5RGF0YSA8LSByYmluZChDb3VudHJ5RGF0YSwgTmV3Q291bnRyeURhdGEpDQpBbGxDb3VudHJ5RGF0YQ0KYGBgDQoNCiMjIExvYWRpbmcgRGF0YSBGaWxlcw0KDQpgYGB7cn0NCmdldHdkKCkNCldITyA8LSByZWFkLmNzdigiV0hPLmNzdiIpDQpzdHIoV0hPKQ0KDQpzdW1tYXJ5KFdITykNCg0KIyBTdWJzZXR0aW5nIGRhdGEgdG8gaW5jbHVkZSBvbmx5IGNvdW50cmllcyBpbiBFVQ0KP3N1YnNldA0KV0hPX0V1cm9wZSA8LSBzdWJzZXQoV0hPLFJlZ2lvbiA9ICJFdXJvcGUiKQ0KV0hPX0V1cm9wZQ0KDQojIE5vdywgcmVtb3ZlIFdIT19FdXJvcGUgZnJvbSBlbnZpcm9ubWVudA0Kcm0oV0hPX0V1cm9wZSkNCmxzKCkNCg0KYGBgDQoNCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gDQoNClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsK1NoaWZ0K0VudGVyKi4gDQoNCmBgYHtyfQ0KcGxvdChjYXJzKQ0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsK0FsdCtJKi4NCg0KV2hlbiB5b3Ugc2F2ZSB0aGUgbm90ZWJvb2ssIGFuIEhUTUwgZmlsZSBjb250YWluaW5nIHRoZSBjb2RlIGFuZCBvdXRwdXQgd2lsbCBiZSBzYXZlZCBhbG9uZ3NpZGUgaXQgKGNsaWNrIHRoZSAqUHJldmlldyogYnV0dG9uIG9yIHByZXNzICpDdHJsK1NoaWZ0K0sqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQoNClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4=</div>
 
 
 
