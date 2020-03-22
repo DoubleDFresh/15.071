@@ -405,6 +405,116 @@ tapply(GE$StockPrice, months(GE$Date), mean, na.rm = TRUE)
 CPS <- read.csv("CPSData.csv")
 nrow(CPS)
 
+## What is most common industry of employment?  Try sorting!
+  
+str(CPS)
+sort(table(CPS$Industry),decreasing = TRUE)
+
+
+## Which state has the fewest interviewees?
+
+sort(table(CPS$State), decreasing = TRUE)
+
+## What PROPORTION of interviewees are US citizens?
+
+table(CPS$Citizenship)
+(116639+7073)/nrow(CPS)
+
+## For which races are there at least 250 interviewees in the CPS dataset of Hispanic ethnicity?
+
+table(CPS$Hispanic, CPS$Race)
+
+## Which variables have at least one interviewee with a missing (NA) value? (Select all that apply.)
+summary(CPS)
+
+## Is there a pattern in missing values?  Is Married based upon region?
+table(CPS$Region, is.na(CPS$Married))
+table(CPS$Sex, is.na(CPS$Married))
+table(CPS$Age, is.na(CPS$Married))
+
+### Region
+6075/(24609+6075)
+4507/(21432+4507)
+7967/(33535+7967)
+6789/(26388+6789)
+
+### Sex
+12217/(12217+55264)
+13121/(13121+50700)
+
+## MetroCode is N/A if interviewee does not live in a metro area. 
+## How many states had all interviewees living in a non-metro area (missing metro area)
+table(is.na(CPS$MetroAreaCode), CPS$State)
+
+## Which region has largest proportion living in a non-metro area?
+table(is.na(CPS$MetroAreaCode), CPS$Region)
+
+## Less tedious way to calculate proportions that are TRUE!  Mean returns proportion of values that are TRUE!
+sort(tapply(is.na(CPS$MetroAreaCode), CPS$State, mean), decreasing = TRUE)
+
+## Read in 2 dictionaries
+MetroAreaMap <- read.csv("MetroAreaCodes.csv")
+str(MetroAreaMap)
+
+CountryMap <- read.csv("CountryCodes.csv")
+str(CountryMap)
+
+
+## Merge and overwrite the CPS df
+
+CPS = merge(CPS, MetroAreaMap, by.x="MetroAreaCode", by.y="Code", all.x=TRUE)
+
+## What is the name of the new var that was added to CPS?
+summary(CPS)
+str(CPS)
+
+## How many interviewees have a missing value for the new MetroArea variable?
+table(is.na(CPS$MetroArea))
+
+## Which metro area has the largest # of interviewees?
+sort(table(CPS$MetroArea), decreasing = TRUE)
+
+## Which  metro area has the > proportion of Hispanics?
+sort(tapply(CPS$Hispanic, CPS$MetroArea, mean, na.rm = TRUE), decreasing = TRUE)
+
+##  determine the number of metropolitan areas in the United States from which at least 20% of interviewees are Asian.
+sort(tapply(CPS$Race == "Asian", CPS$MetroArea, mean, na.rm = TRUE), decreasing = TRUE)
+
+##  determine which metropolitan area has the smallest proportion of interviewees who have received no high school diploma
+
+sort(tapply(CPS$Education == "No high school diploma", CPS$MetroArea, mean, na.rm = TRUE), decreasing = FALSE)
+
+
+## merge in the country of birth information from the CountryMap data frame
+CPS <- merge(CPS, CountryMap, by.x="CountryOfBirthCode", by.y="Code", all.x=TRUE)
+
+## How many interviewees have a missing value for the new country of birth variable?
+table(is.na(CPS$Country))
+
+## Which country outside of NA was most common?
+sort(table(CPS$Country), decreasing = TRUE)
+
+## What proportion of the interviewees from the "New York-Northern New Jersey-Long Island, NY-NJ-PA" metropolitan area have a country of birth that is not the United States?
+
+#table(subset(CPS, Country == "United States"), subset(CPS, MetroArea == "New York-Northern New Jersey-Long Island, NY-NJ-PA"))
+
+####  table(CPS$MetroArea == "New York-Northern New Jersey-Long Island, NY-NJ-PA", CPS$Country != "United States")
+
+MetroNJ <- subset(CPS, MetroArea == "New York-Northern New Jersey-Long Island, NY-NJ-PA")
+head(MetroNJ)
+
+table(MetroNJ$Country == "United States")
+
+1668/nrow(MetroNJ)
+
+## Which metropolitan area has the largest number (note -- not proportion) of interviewees with a country of birth in India? 
+
+###To obtain the number of TRUE values in a vector of TRUE/FALSE values, you can use the sum() function. For instance, sum(c(TRUE, FALSE, TRUE, TRUE)) is 3. Therefore, we can obtain counts of people born in a particular country living in a particular metropolitan area with:
+sort(tapply(CPS$Country == "India", CPS$MetroArea, sum, na.rm=TRUE))
+sort(tapply(CPS$Country == "Brazil", CPS$MetroArea, sum, na.rm=TRUE))
+sort(tapply(CPS$Country == "Somalia", CPS$MetroArea, sum, na.rm=TRUE))
+We see that New York has the most interviewees born in India (96), Boston has the most born in Brazil (18), and Minneapolis has the most born in Somalia (17). 
+
 ```
 
 
