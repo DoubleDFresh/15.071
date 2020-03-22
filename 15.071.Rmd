@@ -404,6 +404,7 @@ tapply(GE$StockPrice, months(GE$Date), mean, na.rm = TRUE)
 
 CPS <- read.csv("CPSData.csv")
 nrow(CPS)
+
 ```
 
 
