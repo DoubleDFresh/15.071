@@ -510,13 +510,34 @@ table(MetroNJ$Country == "United States")
 ## Which metropolitan area has the largest number (note -- not proportion) of interviewees with a country of birth in India? 
 
 ###To obtain the number of TRUE values in a vector of TRUE/FALSE values, you can use the sum() function. For instance, sum(c(TRUE, FALSE, TRUE, TRUE)) is 3. Therefore, we can obtain counts of people born in a particular country living in a particular metropolitan area with:
-sort(tapply(CPS$Country == "India", CPS$MetroArea, sum, na.rm=TRUE))
-sort(tapply(CPS$Country == "Brazil", CPS$MetroArea, sum, na.rm=TRUE))
-sort(tapply(CPS$Country == "Somalia", CPS$MetroArea, sum, na.rm=TRUE))
-We see that New York has the most interviewees born in India (96), Boston has the most born in Brazil (18), and Minneapolis has the most born in Somalia (17). 
+
+
 
 ```
+## Summary of Lessons from Unit 1
 
+**Analytics** is the science of using **data** to build **models** that lead to better **decisions** that add **value** to individuals, companies, and institutions.  
+
+**IQR** = Difference between 1st and 3rd quartiles  
+**Outlier** = Any point that is > 3rd quartile + IQR or < 1st quartile - IQR is an outlier. 
+
+**tapply** = splits data by 2nd arg, then applies the 3rd function to the var given as 1st.  ```{r}tapply(WHO$LiteracyRate, WHO$Region, min, na.rm=T)```
+
+
+
+
+**Basic** functions:  
+1. ?function = help page for function  
+2. ls() = list objects in enviro; rm(var) = remove object from enviro    
+3. data.frame(vec1, vec2) = creates a df from vecs  
+4. subset(data, col1 > 100 | col2 < 500) - can use & or |  
+5. ```{r} WHO$Country[which.min(WHO$Over60)]``` - look up Country with min Over60  
+6. 
+
+
+```{r}
+
+```
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
